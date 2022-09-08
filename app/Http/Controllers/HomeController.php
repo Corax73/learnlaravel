@@ -14,9 +14,9 @@ class HomeController extends Controller
 	{
 		$products = Product::all();
 		/*foreach ($products as $product){
-			print 'Id:'.$product->id;
+			print 'name:'.$product->title;
 			print "<br>";
-			print 'Descr'.$product->descr;
+			print 'Descrition'.$product->description;
 			print "<br>";
 		}*/
 		dd($products);

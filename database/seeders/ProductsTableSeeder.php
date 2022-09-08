@@ -17,7 +17,10 @@ class ProductsTableSeeder extends Seeder
 	{
     for ($i=1; $i<11; $i++) {
 	   \Illuminate\Support\Facades\DB::table('products')->insert([
-      'descr' => str::random(10),
+      'title' =>'Product_'.$i,
+	  'price'=>rand(200, 1500),
+	  'instock'=>1,
+	  'description'=>str::random(10)
       ]);
 	}
 	}
