@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +19,6 @@ use App\Http\Controllers\HomeController;
 }); */
 Route::get('/',[HomeController::class,'index']);
 Route::get('/1',[HomeController::class,'index1']);
+Route::get('/{cat}/{product_id}',[ProductController::class,'show'])->name('showProduct');
+//Route::get('/categories.html',[HomeController::class,'category']);
 //Route::get('/', [\App\Http\Controllers\MainController::class, 'index']);

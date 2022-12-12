@@ -20,6 +20,7 @@ return new class extends Migration
 			$table->boolean('instock');
 			$table->text('description');
             $table->timestamps();
+			$table->integer('new_price')->nullable();
         });
     }
 
