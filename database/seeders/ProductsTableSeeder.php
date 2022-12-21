@@ -20,10 +20,11 @@ class ProductsTableSeeder extends Seeder
       'title' =>'Product_'.$i,
 	  'price'=>rand(200, 1500),
 	  'instock'=>1,
-	  'description'=>str::random(10)
+	  'description'=>str::random(10),
+      'category_id' =>rand(1, 3)
       ]);
 	}
-	}
+    }
 	
 
 }
