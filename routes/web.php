@@ -19,7 +19,7 @@ use App\Http\Controllers\ProductController;
 }); */
 Route::get('/',[HomeController::class,'index']);
 Route::get('/1',[HomeController::class,'index1']);
-Route::get('/{cat}', [ProductController::class, 'show'])->name('showCategory');
+Route::get('/{cat}', [ProductController::class, 'showCategory'])->name('showCategory');
 Route::get('/{cat}/{product_id}',[ProductController::class,'show'])->name('showProduct');
 //Route::get('/categories.html',[HomeController::class,'category']);
 //Route::get('/', [\App\Http\Controllers\MainController::class, 'index']);
