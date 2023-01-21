@@ -92,6 +92,7 @@
 						</div>
                         @endforeach
 					</div>
+					{{$products->appends(request()->query())->links('pagination.index')}}
 					<div class="product_pagination">
 						<ul>
 							<li class="active"><a href="#">01.</a></li>
