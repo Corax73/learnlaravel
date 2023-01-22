@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Darryldecode\Cart\Cart;
+use App\Models\ProductImage;
 
 class ProductController extends Controller
 {
