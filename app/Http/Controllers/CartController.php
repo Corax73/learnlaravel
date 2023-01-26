@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use Darryldecode\Cart\Cart;
 
 class CartController extends Controller
 {
@@ -14,7 +15,7 @@ class CartController extends Controller
     public function addToCart(Request $request) {
         $product = Product::where('id', $request->id)->first();
 
-        if(!isset($_COOKIE['cart_id'])) setcookie('cart_id', uniqid());
+        //if(!isset($_COOKIE['cart_id'])) setcookie('cart_id', uniqid());
         $cart_id = $_COOKIE['cart_id'];
         \Cart::session($cart_id);
 

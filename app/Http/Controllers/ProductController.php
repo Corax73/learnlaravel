@@ -13,10 +13,32 @@ class ProductController extends Controller
     public function show($cat, $product_id){
         $item = Product::where('id', $product_id)->first();
 
-        return view('product.show', ['item' => $item]);
+        if(!isset($_COOKIE['cart_id'])) {
+			
+			setcookie('cart_id', uniqid()); 
+			$quantityProdacts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+		} elseif(isset($_COOKIE['cart_id'])) {
+			
+			$quantityProdacts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+		}
+
+        return view('product.show', [
+            'item' => $item,
+            'quantityProdacts' => $quantityProdacts
+    ]);
     }
 
     public function showCategory(Request $request, $cat_alias){
+
+        if(!isset($_COOKIE['cart_id'])) {
+			
+			setcookie('cart_id', uniqid()); 
+			$quantityProdacts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+		} elseif(isset($_COOKIE['cart_id'])) {
+			
+			$quantityProdacts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+		}
+        
         $cat = Category::where('alias',$cat_alias)->first();
 
         $paginate = 2;
@@ -40,13 +62,15 @@ class ProductController extends Controller
 
         if($request->ajax()){
             return view('ajax.order-by',[
-                'products' => $products
+                'products' => $products,
+                'quantityProdacts' => $quantityProdacts
             ])->render();
         }
 
         return view('categories.index',[
             'cat' => $cat,
             'products' => $products,
+            'quantityProdacts' => $quantityProdacts
         ]);
     }
 }
