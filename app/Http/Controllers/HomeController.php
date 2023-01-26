@@ -14,15 +14,16 @@ class HomeController extends Controller
 		if(!isset($_COOKIE['cart_id'])) {
 			
 			setcookie('cart_id', uniqid()); 
-			$quantityProdacts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+			$quantityProducts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+			
 		} elseif(isset($_COOKIE['cart_id'])) {
 			
-			$quantityProdacts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+			$quantityProducts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
 		}
 		
 		return view('home.index', [
 		'products' => $products,
-		'quantityProdacts' => $quantityProdacts
+		'quantityProducts' => $quantityProducts
 		]);
 	}
 	/* public function category(){

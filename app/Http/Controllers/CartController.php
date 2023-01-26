@@ -15,7 +15,7 @@ class CartController extends Controller
     public function addToCart(Request $request) {
         $product = Product::where('id', $request->id)->first();
 
-        //if(!isset($_COOKIE['cart_id'])) setcookie('cart_id', uniqid());
+        //(!isset($_COOKIE['cart_id'])) setcookie('cart_id', uniqid());
         $cart_id = $_COOKIE['cart_id'];
         \Cart::session($cart_id);
 

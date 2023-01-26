@@ -1,4 +1,4 @@
-<?php
+<?phpProducts
 
 namespace App\Http\Controllers;
 
@@ -16,15 +16,16 @@ class ProductController extends Controller
         if(!isset($_COOKIE['cart_id'])) {
 			
 			setcookie('cart_id', uniqid()); 
-			$quantityProdacts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+			$quantityProducts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+            
 		} elseif(isset($_COOKIE['cart_id'])) {
 			
-			$quantityProdacts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+			$quantityProducts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
 		}
 
         return view('product.show', [
             'item' => $item,
-            'quantityProdacts' => $quantityProdacts
+            'quantityProducts' => $quantityProducts
     ]);
     }
 
@@ -33,10 +34,10 @@ class ProductController extends Controller
         if(!isset($_COOKIE['cart_id'])) {
 			
 			setcookie('cart_id', uniqid()); 
-			$quantityProdacts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+			$quantityProducts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
 		} elseif(isset($_COOKIE['cart_id'])) {
 			
-			$quantityProdacts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+			$quantityProducts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
 		}
         
         $cat = Category::where('alias',$cat_alias)->first();
@@ -63,14 +64,14 @@ class ProductController extends Controller
         if($request->ajax()){
             return view('ajax.order-by',[
                 'products' => $products,
-                'quantityProdacts' => $quantityProdacts
+                'quantityProducts' => $quantityProducts
             ])->render();
         }
 
         return view('categories.index',[
             'cat' => $cat,
             'products' => $products,
-            'quantityProdacts' => $quantityProdacts
+            'quantityProducts' => $quantityProducts
         ]);
     }
 }
