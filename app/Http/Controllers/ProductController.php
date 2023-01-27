@@ -7,12 +7,16 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Darryldecode\Cart\Cart;
 use App\Models\ProductImage;
+use DB;
 
 class ProductController extends Controller
 {
-    public function show($cat, $product_id){
+    public function show($cat, $product_id, Request $request){
+
         $item = Product::where('id', $product_id)->first();
 
+        $category = Category::where('id', $item->category_id)->first();
+        
         if(!isset($_COOKIE['cart_id'])) {
 			
 			setcookie('cart_id', uniqid()); 
@@ -24,6 +28,7 @@ class ProductController extends Controller
 		}
 
         return view('product.show', [
+            'category' => $category,
             'item' => $item,
             'quantityProducts' => $quantityProducts
     ]);

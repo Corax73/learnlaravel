@@ -22,5 +22,6 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/1',[HomeController::class,'index1']);
 Route::get('/category={cat}', [ProductController::class, 'showCategory'])->name('showCategory');
 Route::get('/category={cat}/{product_id}',[ProductController::class,'show'])->name('showProduct');
+echo route('showProduct', ['cat' => $cat_alias]);
 Route::get('/cart', [CartController::class, 'index']);
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('addToCart');
