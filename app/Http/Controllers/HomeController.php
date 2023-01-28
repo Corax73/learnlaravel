@@ -13,8 +13,9 @@ class HomeController extends Controller
 		
 		if(!isset($_COOKIE['cart_id'])) {
 			
-			setcookie('cart_id', uniqid()); 
-			$quantityProducts = \Cart::session($_COOKIE['cart_id'])->getTotalQuantity();
+			setcookie('cart_id', uniqid());
+			$sessionStart = 1;
+			$quantityProducts = \Cart::session($sessionStart)->getTotalQuantity();
 			
 		} elseif(isset($_COOKIE['cart_id'])) {
 			
